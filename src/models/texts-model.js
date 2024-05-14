@@ -10,8 +10,8 @@ const getAllTexts = async () => {
   return texts
 }
 
-const createText = async (title, autor, content) => {
-  if (!content) {
+const createText = async (title, autor, contentSanitized) => {
+  if (!contentSanitized) {
     throw new Error('Content is required')
   }
 
@@ -24,7 +24,7 @@ const createText = async (title, autor, content) => {
     data: {
       title,
       autor,
-      content
+      content: contentSanitized
     }
   })
 

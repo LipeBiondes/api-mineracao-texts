@@ -1,4 +1,5 @@
 const textsModel = require('../models/texts-model')
+const sanitizeText = require('../services/openai')
 
 const getAllTexts = async (_, response) => {
   try {
@@ -18,7 +19,8 @@ const createText = async (request, response) => {
   const { title, autor, content } = request.body
 
   try {
-    const newText = await textsModel.createText(title, autor, content)
+    contentSanitized = await sanitizeText.sanitizeText(content)
+    const newText = await textsModel.createText(title, autor, contentSanitized)
 
     if (!newText) {
       response.status(400).json({ error: 'Error creating text' })
