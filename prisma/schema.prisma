@@ -15,12 +15,3 @@ model Text {
 
   @@map("texts")
 }
-
-model TextSanitized {
-  id      Int     @id @default(autoincrement())
-  title   String?
-  autor   String?
-  content String
-
-  @@map("texts_sanitized")
-}
