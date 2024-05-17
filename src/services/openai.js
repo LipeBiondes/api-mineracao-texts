@@ -10,8 +10,8 @@ const openai = new openAiRequire.OpenAI({
 
 const sanitizeText = async text => {
   const prompt = `
-Sanitizar o seguinte texto substituindo abreviações comuns por suas formas completas, convertendo tudo para letras minúsculas, removendo pontuações e retornando o texto apenas como uma lista de palavras separadas por ";". Aqui está o texto: "${text}"
-`
+  Sanitizar o seguinte texto substituindo abreviações comuns por suas formas completas, convertendo tudo para letras minúsculas, removendo pontuações, artigos definidos e indefinidos, stop words, remova numeros, quebra de linha, subistitua os verbos para sua forma no infinitivo ou para a sua forma nominal e retorne o texto como uma frase. Aqui está o texto: "${text}"
+  `
 
   try {
     const completion = await openai.chat.completions.create({
